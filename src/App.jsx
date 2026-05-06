@@ -275,7 +275,6 @@ export default function App() {
     return <Calculator />;
   }
 
-}
 return (
   <main style={styles.page}>
     <div style={styles.wrap}>
@@ -299,3 +298,4 @@ return (
     </div>
   </main>
 );
+}
