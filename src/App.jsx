@@ -1,11 +1,13 @@
 import React from "react";
 import Calculator from "./pages/Calculator";
+
 const styles = {
   page: {
     minHeight: "100vh",
     background: "#f7f8fb",
     color: "#101827",
-    fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    fontFamily:
+      "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
     overflowX: "hidden",
   },
   wrap: {
@@ -32,7 +34,6 @@ const styles = {
     fontWeight: 850,
     textDecoration: "none",
     fontSize: 14,
-    border: "1px solid #111827",
   },
   hero: {
     textAlign: "center",
@@ -84,7 +85,6 @@ const styles = {
     color: "white",
     fontWeight: 950,
     textDecoration: "none",
-    border: "1px solid #111827",
   },
   secondary: {
     display: "inline-flex",
@@ -114,9 +114,17 @@ const styles = {
     borderRadius: 28,
     padding: 24,
     boxShadow: "0 24px 60px rgba(15,23,42,.12)",
-    width: "100%",
-    boxSizing: "border-box",
     textAlign: "left",
+  },
+  badge: {
+    display: "inline-flex",
+    padding: "8px 10px",
+    borderRadius: 999,
+    background: "#fef3c7",
+    color: "#854d0e",
+    fontWeight: 950,
+    fontSize: 13,
+    marginBottom: 12,
   },
   cardTitle: {
     fontSize: 18,
@@ -138,16 +146,6 @@ const styles = {
   metricValue: {
     fontWeight: 950,
     textAlign: "right",
-  },
-  badge: {
-    display: "inline-flex",
-    padding: "8px 10px",
-    borderRadius: 999,
-    background: "#fef3c7",
-    color: "#854d0e",
-    fontWeight: 950,
-    fontSize: 13,
-    marginBottom: 12,
   },
   lockedValue: {
     filter: "blur(4px)",
@@ -252,7 +250,9 @@ function Metric({ label, value, locked }) {
   return (
     <div style={styles.metric}>
       <span style={styles.metricLabel}>{label}</span>
-      <strong style={{ ...styles.metricValue, ...(locked ? styles.lockedValue : {}) }}>{value}</strong>
+      <strong style={{ ...styles.metricValue, ...(locked ? styles.lockedValue : {}) }}>
+        {value}
+      </strong>
     </div>
   );
 }
@@ -268,34 +268,172 @@ function Feature({ icon, title, children }) {
 }
 
 export default function App() {
-
   const path = window.location.pathname;
 
   if (path === "/calculator") {
     return <Calculator />;
   }
 
-return (
-  <main style={styles.page}>
-    <div style={styles.wrap}>
-      <nav style={styles.nav}>
-        <div style={styles.brand}>DecisionKit</div>
-        <a href="/calculator" style={styles.navCta}>Get the calculator</a>
-      </nav>
+  return (
+    <main style={styles.page}>
+      <div style={styles.wrap}>
+        <nav style={styles.nav}>
+          <div style={styles.brand}>DecisionKit</div>
+          <a href="/calculator" style={styles.navCta}>
+            Get the calculator
+          </a>
+        </nav>
 
-      <section style={styles.hero}>
-        <div style={styles.eyebrow}>🎓 True MBA ROI Calculator</div>
-        <h1 style={styles.h1}>Most MBA ROI calculators lie.</h1>
-        <p style={styles.lead}>
-          They compare tuition with salary and call it ROI. DecisionKit shows your real MBA return after loan EMI, rent, lifestyle, taxes, job delay, visa risk, and currency mismatch.
-        </p>
+        <section style={styles.hero}>
+          <div style={styles.eyebrow}>🎓 True MBA ROI Calculator</div>
 
-        <div style={styles.ctaRow}>
-          <a href="/calculator" style={styles.primary}>Calculate my MBA ROI</a>
-          <a href="#how" style={styles.secondary}>See how it works</a>
-        </div>
-      </section>
-    </div>
-  </main>
-);
+          <h1 style={styles.h1}>Most MBA ROI calculators lie.</h1>
+
+          <p style={styles.lead}>
+            They compare tuition with salary and call it ROI. DecisionKit shows your real MBA
+            return after loan EMI, rent, lifestyle, taxes, job delay, visa risk, and currency
+            mismatch.
+          </p>
+
+          <div style={styles.ctaRow}>
+            <a href="/calculator" style={styles.primary}>
+              Calculate my MBA ROI
+            </a>
+            <a href="#how" style={styles.secondary}>
+              See how it works
+            </a>
+          </div>
+
+          <div style={styles.small}>
+            Built for high-stakes MBA decisions — whether you’re studying in the US, Europe,
+            Canada, India, Singapore, or elsewhere.
+          </div>
+
+          <div style={styles.mockWrap}>
+            <div style={styles.mock}>
+              <div style={styles.badge}>Risky but recoverable</div>
+              <div style={styles.cardTitle}>Free MBA ROI preview</div>
+
+              <Metric label="Years to recover investment" value="2.1 years" />
+              <Metric label="5-year ROI estimate" value="142%" />
+              <Metric label="Total MBA investment" value="$186K" />
+              <Metric label="Monthly EMI" value="$1,184" locked />
+              <Metric label="Monthly leftover" value="$742" locked />
+              <Metric label="Worst-case leftover" value="-$1,920" locked />
+
+              <p style={{ color: "#64748b", lineHeight: 1.55, marginTop: 16, fontSize: 14 }}>
+                ROI looks good on paper. The full report shows whether your monthly life after MBA
+                actually works.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="how" style={styles.section}>
+          <h2 style={styles.sectionHead}>A free ROI preview. A paid reality check.</h2>
+
+          <p style={styles.sectionText}>
+            The free preview gives the headline number: years to recover your MBA investment. The
+            paid report shows what basic calculators hide — EMI burden, monthly leftover,
+            best/worst scenarios, and what to change before committing.
+          </p>
+
+          <div style={styles.grid3}>
+            <Feature icon="📈" title="True MBA ROI">
+              See years to recover your MBA investment, including tuition, living cost and lost
+              salary during school.
+            </Feature>
+
+            <Feature icon="💳" title="Loan & EMI reality">
+              Model loan amount, interest rate, repayment tenure and how much EMI eats into your
+              take-home salary.
+            </Feature>
+
+            <Feature icon="🌍" title="Country-aware defaults">
+              Tuition, salary, tax and living cost assumptions change by country — USA, UK, Canada,
+              India, Germany and more.
+            </Feature>
+
+            <Feature icon="🏠" title="Rent + lifestyle impact">
+              Understand whether your post-MBA life works after rent, lifestyle expenses and basic
+              monthly survival costs.
+            </Feature>
+
+            <Feature icon="⚠️" title="Best / expected / worst case">
+              Stress-test your MBA with job delay, salary risk, inflation pressure and downside
+              scenarios.
+            </Feature>
+
+            <Feature icon="🛠️" title="Risk mitigation">
+              Get practical levers: reduce loan, increase scholarship, choose cheaper housing,
+              extend tenure, or target higher salary.
+            </Feature>
+          </div>
+        </section>
+
+        <section style={styles.section}>
+          <h2 style={styles.sectionHead}>Why basic MBA calculators are dangerous</h2>
+
+          <div style={styles.compare}>
+            <div style={styles.compareCard}>
+              <h3 style={{ marginTop: 0 }}>Basic MBA ROI calculator</h3>
+              <ul style={styles.list}>
+                <li>Uses only tuition vs salary</li>
+                <li>Ignores EMI burden</li>
+                <li>Ignores monthly life after MBA</li>
+                <li>Ignores job delay risk</li>
+                <li>Ignores visa and currency mismatch</li>
+              </ul>
+            </div>
+
+            <div style={{ ...styles.compareCard, borderColor: "#111827" }}>
+              <h3 style={{ marginTop: 0 }}>DecisionKit MBA ROI Calculator</h3>
+              <ul style={styles.list}>
+                <li>Shows years to recover total MBA investment</li>
+                <li>Shows EMI as % of monthly take-home</li>
+                <li>Shows leftover money after living costs</li>
+                <li>Models realistic country-wise assumptions</li>
+                <li>Gives a clear risk verdict and recommendation</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" style={styles.section}>
+          <div style={styles.pricing}>
+            <div>
+              <div style={{ color: "#cbd5e1", fontWeight: 850 }}>Launch price</div>
+              <div style={styles.price}>$7</div>
+
+              <p style={{ color: "#d1d5db", fontSize: 17, lineHeight: 1.55, margin: 0 }}>
+                Unlock the full MBA decision report: monthly cash flow, EMI stress, worst-case
+                scenarios, risk breakdown, and clear recommendations.
+              </p>
+
+              <p style={{ color: "#9ca3af", fontSize: 13, marginTop: 12 }}>
+                Approx. ₹599 in India. One-time payment. Lifetime access.
+              </p>
+            </div>
+
+            <a
+              href="/calculator"
+              style={{
+                ...styles.primary,
+                background: "white",
+                color: "#111827",
+                borderColor: "white",
+              }}
+            >
+              Open calculator
+            </a>
+          </div>
+        </section>
+
+        <footer style={styles.footer}>
+          DecisionKit is a planning tool, not financial advice. Assumptions are editable and should
+          be verified before making a final decision.
+        </footer>
+      </div>
+    </main>
+  );
 }
