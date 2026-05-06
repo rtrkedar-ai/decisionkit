@@ -268,5 +268,34 @@ function Feature({ icon, title, children }) {
 }
 
 export default function App() {
-  return <Calculator />;
+
+  const path = window.location.pathname;
+
+  if (path === "/calculator") {
+    return <Calculator />;
+  }
+
 }
+return (
+  <main style={styles.page}>
+    <div style={styles.wrap}>
+      <nav style={styles.nav}>
+        <div style={styles.brand}>DecisionKit</div>
+        <a href="/calculator" style={styles.navCta}>Get the calculator</a>
+      </nav>
+
+      <section style={styles.hero}>
+        <div style={styles.eyebrow}>🎓 True MBA ROI Calculator</div>
+        <h1 style={styles.h1}>Most MBA ROI calculators lie.</h1>
+        <p style={styles.lead}>
+          They compare tuition with salary and call it ROI. DecisionKit shows your real MBA return after loan EMI, rent, lifestyle, taxes, job delay, visa risk, and currency mismatch.
+        </p>
+
+        <div style={styles.ctaRow}>
+          <a href="/calculator" style={styles.primary}>Calculate my MBA ROI</a>
+          <a href="#how" style={styles.secondary}>See how it works</a>
+        </div>
+      </section>
+    </div>
+  </main>
+);
